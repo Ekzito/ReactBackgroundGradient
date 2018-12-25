@@ -1,33 +1,28 @@
 import React, { Component } from 'react';
+const format = /#[0-9A-F]{6}$/i;
 
 class Switch extends Component {
-    constructor(props) {
-      super(props);
 
-      this.format = /#[0-9A-F]{6}$/i;
-      console.log(this.format.test('#FFFFF1'));
-      this.state = {
+      state = {
         topInputValue: '',
         bottomInputValue: ''
       }
-    }
 
     handleFormSubmit(event) {
         event.preventDefault();
-        if (this.format.test(this.state.topInputValue) === false) {
-            alert('Ошибка! Неверный формат.');
+        if (!format.test(this.state.topInputValue)) {
+            alert('Ошибка! Неверный формат. (верный формат - "#rrggbb")');
             return null;
         }
-        if (this.format.test(this.state.bottomInputValue) === false) {
-            alert('Ошибка! Неверный формат.');
+        if (!format.test(this.state.bottomInputValue)) {
+            alert('Ошибка! Неверный формат. (верный формат - "#rrggbb")');
             return null;
         }
-        this.props.toggleColors(this.state)
+        this.props.toggleColors(this.state);
     }
 
     handleBottomValueChange(event) {
         this.setState({
-            topInputValue: this.state.topInputValue,
             bottomInputValue: event.target.value
         })
     }
@@ -35,7 +30,6 @@ class Switch extends Component {
     handleTopValueChange(event) {
         this.setState({
             topInputValue: event.target.value,
-            bottomInputValue: this.state.bottomInputValue
         })
     }
 
