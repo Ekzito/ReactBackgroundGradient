@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Switch.css'
 const format = /#[0-9A-F]{6}$/i;
 
 class Switch extends Component {
